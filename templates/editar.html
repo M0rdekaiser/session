@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar inscrito</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .form-check-label {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+    <h1 class="text-center">Editar inscrito</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+    <form action="{{url_for('editar',id=inscrito.id)}}" method="post">
+        <div class="form-group mb-3">
+            <label for="date">Fecha:</label>
+            <input type="date" class="form-control" id="date" name="fecha" value="{{inscrito['fecha']}}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="name">Nombre:</label>
+            <input type="text" class="form-control" id="name" name="nombre" value="{{inscrito['nombre']}}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="lastName">Apellidos:</label>
+            <input type="text" class="form-control" id="lastName" name="apellidos" value="{{inscrito['apellidos']}}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label>Turno:</label>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="turno" id="turnoMañana" value="Mañana" {% if inscrito['turno'] == 'Mañana' %}checked{% endif %}>
+            <label class="form-check-label" for="turnoMañana">Mañana</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="turno" id="turnoTarde" value="Tarde" {% if inscrito['turno'] == 'Tarde' %}checked{% endif %}>
+            <label class="form-check-label" for="turnoTarde">Tarde</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="turno" id="turnoNoche" value="Noche" {% if inscrito['turno'] == 'Noche' %}checked{% endif %}>
+            <label class="form-check-label" for="turnoNoche">Noche</label>
+            </div>
+        </div>  
+        <div class="form-group mb-4">
+            <label>Seminarios disponibles:</label>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="disponibles" value="Inteligencia Artificial" id="ia" {% if "Inteligencia" in inscrito['disponible'] %}checked{% endif %}>
+            <label class="form-check-label" for="ia">Inteligencia Artificial</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="disponibles" value="Machine Learning" id="ml" {% if "Machine" in inscrito['disponible'] %}checked{% endif %}>
+            <label class="form-check-label" for="ml">Machine Learning</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="disponibles" value="Simulación con Arena" id="arena" {% if "Simulación" in inscrito['disponible'] %}checked{% endif %}>
+            <label class="form-check-label" for="arena">Simulación con Arena</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="disponibles" value="Robótica Educativa" id="re" {% if "Robótica" in inscrito['disponible'] %}checked{% endif %}>
+            <label class="form-check-label" for="re">Robótica Educativa</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-custom">Enviar registro</button>
+    </form>
+</body>
+</html>

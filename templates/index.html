@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Inscritos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #0085f1;
+        }
+        h1 {
+            color: #cc0000be;
+        }
+        .btn-success {
+            background-color: #4ddef8cb;
+            border-color: #ee7272da;
+        }
+        .table-light {
+            background-color: #fdfdfe;
+        }
+        .table-warning {
+            background-color: #fff3cd;
+        }
+        .table-success {
+            background-color: #d4edda;
+        }
+        .table-info {
+            background-color: #cfe2ff;
+        }
+        .btn-custom-delete {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+    <h1 class="text-center">Lista de Inscritos</h1>
+    <a href="{{url_for('nuevo')}}" class="btn btn-success mb-3">Nuevo</a>
+    <br>
+    <table border="1" class="table table-info">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Turno</th>
+                <th>Seminarios</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in seminarios %}
+        <tr>
+            <td class="table-warning">{{item.id}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellidos}}</td>
+            <td>{{item.turno}}</td>
+            <td class="table-success">{{item.disponible}}</td>
+            <td><a href="{{url_for('editar',id=item.id)}}" class="btn btn-primary">Editar</a></td>
+            <td>
+                <form action="{{url_for('eliminar',id=item.id)}}" method="post">
+                    <button type="submit" class="btn btn-custom-delete">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
